@@ -1,7 +1,8 @@
-#ifndef LIVRE_H
-#define LIVRE_H
+# ifndef LIVRE_H
+# define LIVRE_H
 
-#include <string>
+# include <iostream>
+# include <string>
 
 using namespace std;
 
@@ -18,9 +19,10 @@ class Livre {
 
         string état;
     public:
-        Livre(const string &isbn, int code, const string &auteur, const string &titre, const string& éditeur, const string& publicCible, const string& catégorie);
+        Livre(const string &isbn, int code, const string &auteur, const string &titre, const string& éditeur,
+            const string& publicCible, const string& catégorie);
 
-        void showLivre() const;
+        virtual void afficherLivre() const;
 
         // Getters
         const string& getIsbn() const;
@@ -38,8 +40,12 @@ class Livre {
         void setCode(int code);
 
         void setÉtat(const string& état);
+
+
+
+        virtual ~Livre() = default;
 };
 
 
 
-#endif //LIVRE_H
+# endif //LIVRE_H

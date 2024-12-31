@@ -18,7 +18,7 @@ Livre::Livre(const string& isbn, const int code, const string &auteur, const str
 }
 
 
-void Livre:: showLivre() const {
+void Livre:: afficherLivre() const {
     // Affichage du décorateur pour la séparation des livres
     std::cout << "=============================================\n";
     std::cout << "Informations sur le livre: "<< titre << std::endl;
@@ -33,8 +33,6 @@ void Livre:: showLivre() const {
     std::cout << "Public      : " << publicCible << std::endl;
     std::cout << "Catégorie   : " << catégorie << std::endl;
     std::cout << "État        : " << état << std::endl;
-
-    std::cout << "---------------------------------------------\n";
 
 }
 
