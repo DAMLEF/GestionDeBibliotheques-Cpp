@@ -19,6 +19,7 @@ class Livre {
 
         string état;
     public:
+        Livre();
         Livre(const string &isbn, int code, const string &auteur, const string &titre, const string& éditeur,
             const string& publicCible, const string& catégorie);
 

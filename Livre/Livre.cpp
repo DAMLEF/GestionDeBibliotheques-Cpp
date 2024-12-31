@@ -2,6 +2,20 @@
 
 #include "Livre.h"
 
+Livre::Livre() {
+    this->isbn = "";
+    this->code = 0;
+
+    this->auteur = "";
+    this->titre = "";
+    this->éditeur = "";
+    this->publicCible = "";
+
+    this->catégorie = "";
+
+    this->état = "libre";   // Par défaut le livre est libre.
+}
+
 Livre::Livre(const string& isbn, const int code, const string &auteur, const string &titre, const string& éditeur,
     const string& publicCible, const string& catégorie) {
     this->isbn = isbn;
@@ -19,10 +33,8 @@ Livre::Livre(const string& isbn, const int code, const string &auteur, const str
 
 
 void Livre:: afficherLivre() const {
-    // Affichage du décorateur pour la séparation des livres
-    std::cout << "=============================================\n";
-    std::cout << "Informations sur le livre: "<< titre << std::endl;
     std::cout << "---------------------------------------------\n";
+    std::cout << "Livre: "<< titre << std::endl << std::endl;
 
     std::cout << "ISBN        : " << isbn << std::endl;
     std::cout << "Code        : " << code << std::endl;
