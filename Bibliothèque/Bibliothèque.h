@@ -20,6 +20,7 @@ class Bibliothèque {
         void ajouterLivre(Livre livre);
 
     public:
+        Bibliothèque();
         Bibliothèque(int code, const string& nom, const string& adresse);
 
         void afficherBibliothèque() const;
@@ -27,11 +28,24 @@ class Bibliothèque {
         void afficherLivres() const;
         void afficherLivres(const string& catégorie) const;
 
+        void acheterLivre(Livre livre);
+
+        void emprunterLivre(int codeLivre) const;
+        void rendreLivre(int codeLivre) const;
+
+
         // Getters
         int getCode() const;
 
         const string & getNom() const;
         const string & getAdresse() const;
+
+        int getNbLivres() const;
+
+        Livre getLivre(const string& isbn) const;
+        Livre getLivre(int codeLivre) const;
+
+
 
 
 };

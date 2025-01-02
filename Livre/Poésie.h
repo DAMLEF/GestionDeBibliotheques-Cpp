@@ -7,13 +7,15 @@
 
 class Poésie final: public Livre {
     private:
-        string indicateur;
+        bool vers;
+        bool prose;
     public:
         Poésie(const string& isbn, int code, const string &auteur, const string &titre, const string& éditeur,
-            const string& publicCible, const string& indicateur);
+            const string& publicCible, bool vers, bool prose);
 
         // Getters
-        const string& getIndicateur() const;
+        bool getVers() const;
+        bool getProse() const;
 
 
         void afficherLivre() const override;

@@ -4,7 +4,7 @@
 
 Livre::Livre() {
     this->isbn = "";
-    this->code = 0;
+    this->code = -1;        // On dira qu'un livre est neuf s'il est libre et que son code est à -1.
 
     this->auteur = "";
     this->titre = "";

@@ -4,12 +4,16 @@ project(GestionBibliotheques_Cpp)
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(Livre)
+include_directories(Bibliothèque)
+include_directories(Adhérent)
 
 add_executable(GestionBibliotheques_Cpp
     Livre/Livre.cpp
     Livre/Livre.h
     Bibliothèque/Bibliothèque.cpp
     Bibliothèque/Bibliothèque.h
+    Adhérent/Adhérent.cpp
+    Adhérent/Adhérent.h
 
     main.cpp
         Livre/BD.cpp
@@ -22,4 +26,5 @@ add_executable(GestionBibliotheques_Cpp
         Livre/Album.h
         Livre/Théâtre.cpp
         Livre/Théâtre.h
+
 )
