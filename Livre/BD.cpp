@@ -4,6 +4,7 @@
 
 static const string CATÉGORIE = "Bande dessiné";
 
+
 BD::BD(const string &isbn, const int code, const string &auteur, const string &titre, const string &éditeur,
     const string &publicCible, const string &dessinateur):
 Livre(isbn, code, auteur, titre, éditeur, publicCible, CATÉGORIE) {

@@ -11,7 +11,7 @@ class Livre {
         string isbn;
         int code;
 
-        string auteur;  //todo: const ?
+        string auteur;
         string titre;
         string éditeur;
         string publicCible;
