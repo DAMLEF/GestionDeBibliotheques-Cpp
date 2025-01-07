@@ -41,6 +41,7 @@ int Adhérent::emprunterLivre(const int codeLivre) {
                 nombreEmpruntsRestants--;
                 bibliothèqueAdhérent.emprunterLivre(codeLivre); //todo est-ce que la bibliothèque change ?
 
+                //todo: changer l'état dans le tableau adhérent
                 cout << "[GB] L'adhérent " << nom << " " << prénom <<" de la bibliothèque " << bibliothèqueAdhérent.getNom() <<
                     " a emprunté le livre au code : " << codeLivre << endl;
 
