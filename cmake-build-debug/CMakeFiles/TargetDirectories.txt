@@ -1,0 +1,3 @@
+C:/Users/damie/OneDrive/Documents/Programmation/C++/GestionBibliotheques-Cpp/cmake-build-debug/CMakeFiles/GestionBibliotheques_Cpp.dir
+C:/Users/damie/OneDrive/Documents/Programmation/C++/GestionBibliotheques-Cpp/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/damie/OneDrive/Documents/Programmation/C++/GestionBibliotheques-Cpp/cmake-build-debug/CMakeFiles/rebuild_cache.dir

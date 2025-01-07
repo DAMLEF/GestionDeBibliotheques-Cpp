@@ -1,0 +1,12 @@
+Dans les livres constantes à discuter (catégorie)
+Dans les livres faire des vérifications pour les champs dans les constructeurs ?
+ (pas vraiment obligatoire étant donné que s'est géré en interne, à discuter)
+
+Entrer tous les types de romans possibles quelque part
+
+le propriétaire si on l'ajoute au attribut des Livres, l'ajouter dans ajoute Livre la fonction interne de la bibliothèque
+
+Liste chaînée pour les emprunts d'un adhérent et pour la liste de livre d'un établissement.
+
+Template pour afficher les livres
+-1 dans Adhérent emprunter
