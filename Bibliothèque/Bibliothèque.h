@@ -30,8 +30,12 @@ class Bibliothèque {
 
         void acheterLivre(Livre livre);
 
+        // Méthodes en lien avec les adhérents
         void emprunterLivre(int codeLivre) const;
         void rendreLivre(int codeLivre) const;
+
+        // Méthodes entre bibliothèques
+        //TODO:
 
 
         // Getters

@@ -26,5 +26,7 @@ add_executable(GestionBibliotheques_Cpp
         Livre/Album.h
         Livre/Théâtre.cpp
         Livre/Théâtre.h
+        Bibliothèque/Prêt.cpp
+        Bibliothèque/Prêt.h
 
 )
