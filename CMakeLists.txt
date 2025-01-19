@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 14)
 include_directories(Livre)
 include_directories(Bibliothèque)
 include_directories(Adhérent)
+include_directories(ListeChainée)
 
 add_executable(GestionBibliotheques_Cpp
     Livre/Livre.cpp
@@ -28,5 +29,7 @@ add_executable(GestionBibliotheques_Cpp
         Livre/Théâtre.h
         Bibliothèque/Prêt.cpp
         Bibliothèque/Prêt.h
+        ListeChainée/LivreLC.cpp
+        ListeChainée/LivreLC.h
 
 )

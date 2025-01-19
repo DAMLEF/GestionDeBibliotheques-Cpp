@@ -1,16 +1,19 @@
 # ifndef PRÊT_H
 # define PRÊT_H
 
-# include "Bibliothèque.h"
-
 
 class Prêt {
     private:
-        Bibliothèque& propriétaire;
+        int propriétaireBCode;           // Code de la bibliothèque du propriétaire
         int codePrêt;                   // Code du livre chez la bibliothèque qui reçoit le livre
         int codePropriétaire;           // Code du livre chez son propriétaire
     public:
-        Prêt(Bibliothèque& propriétaireLivre, int codePropriétaire, int codePrêt);
+        Prêt();
+        Prêt(int propriétaireLivreCode, int codePropriétaire, int codePrêt);
+
+        // Getters
+        int getCodePrêt() const;
+        int getPropriétaire() const;
 };
 
 

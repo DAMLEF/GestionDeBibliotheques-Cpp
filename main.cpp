@@ -5,6 +5,8 @@
 # include "Théâtre.h"
 # include "Roman.h"
 
+# include "LivreLC.h"
+
 # include "Bibliothèque.h"
 
 #include "Adhérent.h"
@@ -22,23 +24,29 @@ int main() {
     Adhérent  a_cb(bnf_fm, "Charles", "Baudelaire", "22 Quai de Béthune, Paris, France", 0, 20);
 
 
+    Livre *livreHarryPotter2 = new Livre(" 2-07-052455-8", 3, "JK Rowling", "Harry Potter et la Chambre des Secrets",
+                                         "Folio Junior", "Jeunesse", "Fantastique");
+    Roman* LivreTest = new Roman(" 2-07-052455-8", 5, "JK Rowling", "Harry Potter et la Chambre des Secrets",
+                                  "Folio Junior", "Jeunesse", "Fantastique");
 
-    const Livre livreHarryPotter2(" 2-07-052455-8", 1, "JK Rowling", "Harry Potter et la Chambre des Secrets",
-                                  "Folio Junior", "Jeunesse", "Fantastique");
-    const Roman LivreTest(" 2-07-052455-8", 1, "JK Rowling", "Harry Potter et la Chambre des Secrets",
-                                  "Folio Junior", "Jeunesse", "Fantastique");
+    Roman* Test2 = new Roman(" 2-07-052455-8", 8, "JK Rowling", "Harry Potter et la Chambre des Secrets",
+                              "Folio Junior", "Jeunesse", "Fantastique");
 
 
     // Test classe Bibliothèque
-    bnf_fm.acheterLivre(livreHarryPotter2);
-    bnf_fm.acheterLivre(LivreTest); //todo: n'appelle pas la bonne fonction afficherLivre()
-    bnf_fm.acheterLivre(livreHarryPotter2);
-
-    bnf_fm.afficherLivres("Roman");
 
     bnf_fm.afficherBibliothèque();
 
+    bnf_fm.acheterLivre(livreHarryPotter2);
+    bnf_fm.acheterLivre(LivreTest);
+    bnf_fm.acheterLivre(livreHarryPotter2);
+
+
+    bnf_fm.afficherLivres("Roman");
+    bnf_fm.afficherLivres();
+
     // Test classe Adhérent
+
     a_cb.afficherAdhérent();
 
     a_cb.emprunterLivre(2);
@@ -52,6 +60,17 @@ int main() {
 
     bnf_fm.afficherLivres();    // On vérifie que le livre est de nouveau libre
 
+    LivreLC lc;
+
+    lc.ajouterLivre(LivreTest);
+    lc.ajouterLivre(livreHarryPotter2);
+    lc.ajouterLivre(Test2);
+
+    //lc.afficherListe();
+
+    lc.retirerLivre(5);
+
+    lc.afficherListe();
 
 
     return 0;

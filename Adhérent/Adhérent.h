@@ -13,7 +13,7 @@ class Adhérent {
         int numéroAdhérent;
         Bibliothèque& bibliothèqueAdhérent;   //todo bibli ou int ?
 
-        Livre* emprunts;
+        LivreLC emprunts;
         int nombreEmprunts;
         int nombreEmpruntsRestants;
 

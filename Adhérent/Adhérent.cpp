@@ -10,7 +10,7 @@ Adhérent::Adhérent(Bibliothèque &b, const string &nom, const string &prénom,
     this->bibliothèqueAdhérent = b;
 
     this->nombreEmpruntsRestants = nombreMaxEmprunts;
-    this->emprunts = new Livre[nombreMaxEmprunts];
+    this->emprunts = LivreLC();
     this->nombreEmprunts = 0;
 }
 
@@ -31,12 +31,12 @@ void Adhérent::afficherAdhérent() const {
 
 int Adhérent::emprunterLivre(const int codeLivre) {
     if(this->nombreEmpruntsRestants > 0) {
-        const Livre result = bibliothèqueAdhérent.getLivre(codeLivre);
+        Livre* result = bibliothèqueAdhérent.getLivre(codeLivre);
 
         // On vérifie que le livre reçu est bien le bon (éviter le code d'erreur).
-        if (result.getCode() == codeLivre) {
-            if(result.getÉtat() == "libre") {   //todo: constante d'état ?
-                emprunts[nombreEmprunts] = result;      //todo tester si c'est le même que dans la bdd
+        if (result->getCode() == codeLivre) {
+            if(result->getÉtat() == "libre") {   //todo: constante d'état ?
+                emprunts.ajouterLivre(result);      //todo tester si c'est le même que dans la bdd
                 nombreEmprunts++;
                 nombreEmpruntsRestants--;
                 bibliothèqueAdhérent.emprunterLivre(codeLivre); //todo est-ce que la bibliothèque change ?
@@ -66,23 +66,14 @@ int Adhérent::emprunterLivre(const int codeLivre) {
 
 
 int Adhérent::rendreLivre(const int codeLivre) {
-    int livreIndex = -1;
-    int i = 0;
+    Livre* résultat = emprunts.getLivre(codeLivre);
 
-    while(livreIndex == -1 && i < nombreEmprunts) {
-        if(emprunts[i].getCode() == codeLivre) {
-            livreIndex = i;
-        }
-        i++;
-    }
 
-    if(livreIndex != -1) {
+    if(résultat->getCode() == codeLivre) {
         bibliothèqueAdhérent.rendreLivre(codeLivre);
 
-        // Le livre doit maintenant être supprimé du tableau
-        for(int j=livreIndex; j < nombreEmprunts - 1; j++) {
-            emprunts[j] = emprunts[j + 1];
-        }
+        // Le livre doit maintenant être supprimé de la liste (chainée).
+        emprunts.retirerLivre(codeLivre);
 
         nombreEmprunts--;
         nombreEmpruntsRestants++;

@@ -1,7 +1,8 @@
 #ifndef BIBLIOTHÈQUE_H
 #define BIBLIOTHÈQUE_H
 
-#include "Livre.h"
+# include "LivreLC.h"
+# include "Prêt.h"
 
 
 class Bibliothèque {
@@ -11,13 +12,23 @@ class Bibliothèque {
         string nom;
         string adresse;
 
-        Livre* livres;
+        LivreLC livres;
         int nbLivres;
-        int max_size;   // Stocke la taille maximale que peut accueillir le tableau livres (pour réadapter en fonction des besoins de la bibliothèque)
+        int maxCode;
+
+        Prêt* prêts;
+        int nbPrêts;
+        int tailleTableauPrêts;
+
 
         // Fonction interne
-        void agrandirTableau();
-        void ajouterLivre(Livre livre);
+        void ajouterLivre(Livre* livre);
+        void retirerLivre(int codeLivre);
+
+        void changerTaillePrêts();
+        void ajouterPrêt(int codeBibliothèquePropriétaire, int codePropriétaire, int nouveauCode);
+        void retirerPrêt(int codeLivre);
+
 
     public:
         Bibliothèque();
@@ -25,18 +36,19 @@ class Bibliothèque {
 
         void afficherBibliothèque() const;
 
-        void afficherLivres() const;
-        void afficherLivres(const string& catégorie) const;
+        void afficherLivres();
+        void afficherLivres(const string& catégorie);
 
-        void acheterLivre(Livre livre);
+        void acheterLivre(Livre* livre);
+        void supprimerLivre(int codeLivre);
 
         // Méthodes en lien avec les adhérents
         void emprunterLivre(int codeLivre) const;
         void rendreLivre(int codeLivre) const;
 
         // Méthodes entre bibliothèques
-        //TODO:
-
+        void demanderLivre(Bibliothèque* bibliothèque, const string& isbn);
+        void terminerPrêt(Bibliothèque* bibliothèques, int nbBibliothèques, int codeLivre);
 
         // Getters
         int getCode() const;
@@ -46,8 +58,8 @@ class Bibliothèque {
 
         int getNbLivres() const;
 
-        Livre getLivre(const string& isbn) const;
-        Livre getLivre(int codeLivre) const;
+        Livre* getLivre(const string& isbn) const;
+        Livre* getLivre(int codeLivre) const;
 
 
 
