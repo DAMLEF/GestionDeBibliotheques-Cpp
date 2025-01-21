@@ -1,13 +1,18 @@
 # include "Album.h"
-
+# include "SaisieInvalide.h"
 static const string CATÉGORIE = "Album";
 
 
 Album::Album(const string &isbn, const int code, const string &auteur, const string &titre, const string &éditeur,
     const string &publicCible, const bool photos, const bool dessins):
 Livre(isbn, code, auteur, titre, éditeur, publicCible, CATÉGORIE) {
-    this->photos = photos;
-    this->dessins = dessins;
+    if (photos || dessins ){
+        this->photos = photos;
+        this->dessins = dessins;
+    }
+    else{
+        throw SaisieInvalide("Erreur de saisie : Un album n'en est un que s'il contient des photos ou des dessins.");
+    }
 }
 
 bool Album::getPhotos() const {

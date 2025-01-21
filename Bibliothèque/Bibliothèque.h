@@ -39,7 +39,9 @@ class Bibliothèque {
         void afficherLivres();
         void afficherLivres(const string& catégorie);
 
-        void acheterLivre(Livre* livre);
+        void afficherPrêts() const;
+
+        void acheterLivre(Livre livre);
         void supprimerLivre(int codeLivre);
 
         // Méthodes en lien avec les adhérents
@@ -47,7 +49,7 @@ class Bibliothèque {
         void rendreLivre(int codeLivre) const;
 
         // Méthodes entre bibliothèques
-        void demanderLivre(Bibliothèque* bibliothèque, const string& isbn);
+        void demanderLivre(Bibliothèque& bibliothèque, const string& isbn);
         void terminerPrêt(Bibliothèque* bibliothèques, int nbBibliothèques, int codeLivre);
 
         // Getters

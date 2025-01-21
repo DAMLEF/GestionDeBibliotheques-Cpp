@@ -7,6 +7,7 @@ include_directories(Livre)
 include_directories(Bibliothèque)
 include_directories(Adhérent)
 include_directories(ListeChainée)
+include_directories(Exception)
 
 add_executable(GestionBibliotheques_Cpp
     Livre/Livre.cpp
@@ -15,6 +16,10 @@ add_executable(GestionBibliotheques_Cpp
     Bibliothèque/Bibliothèque.h
     Adhérent/Adhérent.cpp
     Adhérent/Adhérent.h
+    Exception/LimiteAtteinte.cpp
+    Exception/LimiteAtteinte.h
+    Exception/SaisieInvalide.cpp
+    Exception/SaisieInvalide.h
 
     main.cpp
         Livre/BD.cpp
@@ -31,5 +36,9 @@ add_executable(GestionBibliotheques_Cpp
         Bibliothèque/Prêt.h
         ListeChainée/LivreLC.cpp
         ListeChainée/LivreLC.h
+        Exception/LimiteAtteinte.cpp
+        Exception/LimiteAtteinte.h
+        Exception/SaisieInvalide.cpp
+        Exception/SaisieInvalide.h
 
 )

@@ -1,5 +1,10 @@
-//
-// Created by tsalomon on 07/01/25.
-//
+# include "LimiteAtteinte.h"
 
-#include "LimiteAtteinte.h"
+LimiteAtteinte::LimiteAtteinte(const char* txt) noexcept{
+    this->message = txt;
+}
+
+const char *LimiteAtteinte::what() const noexcept{
+    return message;
+}
+

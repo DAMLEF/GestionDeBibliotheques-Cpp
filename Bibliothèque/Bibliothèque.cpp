@@ -60,6 +60,15 @@ void Bibliothèque::afficherLivres(const string &catégorie){
     std::cout << "=============================================\n";
 }
 
+void Bibliothèque::afficherPrêts() const {
+    std::cout << "=============================================\n";
+    std::cout << "Bibliothèque - Liste des Prêts:\n";
+    for(int i=0; i < nbPrêts; i++) {
+        prêts[i].afficher();
+    }
+    std::cout << "=============================================\n";
+}
+
 // Interne
 void Bibliothèque::ajouterLivre(Livre* livre) {
 
@@ -76,6 +85,8 @@ void Bibliothèque::retirerLivre(int codeLivre) {
     if(l->getCode() != -1) {
         livres.retirerLivre(codeLivre);
         nbLivres--;
+
+        cout << "[GB] Le livre a été retiré avec succès de " << nom << endl;
     }
     else {
         cout << "[GB] Vous ne pouvez pas retirer le livre au code " << code << " de la bibliothèque " << nom <<
@@ -138,11 +149,12 @@ void Bibliothèque::rendreLivre(const int codeLivre) const {
 }
 
 // Option de la bibliothèque
-void Bibliothèque::acheterLivre(Livre* livre) {
-    //todo: vérifions que le livre est neuf (exception try catch)
+void Bibliothèque::acheterLivre(Livre livre) {
+    auto* nouveauLivre = new Livre;
+    *nouveauLivre = livre;
 
-    std:: cout << "[GB] La Bibliothèque " << nom << " achète le livre : " << livre->getTitre() << std::endl;
-    ajouterLivre(livre);
+    std:: cout << "[GB] La Bibliothèque " << nom << " achète le livre : " << livre.getTitre() << std::endl;
+    ajouterLivre(nouveauLivre);
 }
 
 
@@ -187,24 +199,25 @@ Livre* Bibliothèque::getLivre(const string& isbn) const {
 }
 
 // Méthodes entre bibliothèques
-void Bibliothèque::demanderLivre(Bibliothèque *bibliothèque, const string &isbn) {
-    Livre* livre = bibliothèque->getLivre(isbn);
+void Bibliothèque::demanderLivre(Bibliothèque &bibliothèque, const string &isbn) {
+    Livre* livre = bibliothèque.getLivre(isbn);
 
     // On vérifie que le livre est bien dans la bibliothèque à laquelle on fait la demande
     if(livre->getCode() != -1) {
         if(livre->getÉtat() == "libre") {
             // Le livre est libre donc on peut l'emprunter
-            ajouterPrêt(bibliothèque->getCode(), livre->getCode(), maxCode);
-            bibliothèque->retirerLivre(livre->getCode());
+            ajouterPrêt(bibliothèque.getCode(), livre->getCode(), maxCode);
+            bibliothèque.retirerLivre(livre->getCode());
             ajouterLivre(livre);
+            cout << "[GB] La bibliothèque " << getNom() << " récupère le livre " << livre->getTitre() << endl;
         }
         else {
-            cout << "[GB] La bibliothèque " << bibliothèque->getNom() << " possède le livre mais il a déjà été emprunté"
+            cout << "[GB] La bibliothèque " << bibliothèque.getNom() << " possède le livre mais il a déjà été emprunté"
             << endl;
         }
     }
     else {
-        cout << "[GB] La bibliothèque " << bibliothèque->getNom() << " ne possède pas ce livre" << endl;
+        cout << "[GB] La bibliothèque " << bibliothèque.getNom() << " ne possède pas ce livre" << endl;
     }
 
 }
@@ -270,6 +283,8 @@ void Bibliothèque::supprimerLivre(const int codeLivre) {
 
     if(index == -1) {
         retirerLivre(codeLivre);
+
+
     }
     else {
         cout << "[GB] Erreur le livre est un prêt, il ne peut pas être supprimé de la bibliothèque d'origine" << endl;

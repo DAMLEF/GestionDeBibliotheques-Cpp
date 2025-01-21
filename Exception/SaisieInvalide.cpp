@@ -1,14 +1,11 @@
-//
-// Created by tsalomon on 07/01/25.
-//
 
-#include "SaisieInvalide.h"
+# include "SaisieInvalide.h"
 
-    SaisieInvalide::SaisieInvalide(const char* txt) throw(){
-      this->message = txt;
-     }
+SaisieInvalide::SaisieInvalide(const char* txt) noexcept{
+  this->message = txt;
+ }
 
-    const char* SaisieInvalide::what() const throw(){
-      return message;
-      }
+const char *SaisieInvalide::what() const noexcept{
+  return message;
+  }
 

@@ -11,7 +11,7 @@ class Adhérent {
         string adresse;
 
         int numéroAdhérent;
-        Bibliothèque& bibliothèqueAdhérent;   //todo bibli ou int ?
+        Bibliothèque& bibliothèqueAdhérent;
 
         LivreLC emprunts;
         int nombreEmprunts;
@@ -23,7 +23,7 @@ class Adhérent {
                  int numéroAdhérent, int nombreMaxEmprunts);
 
         void afficherAdhérent() const;
-
+        void afficherEmprunt();
 
 
         int emprunterLivre(int codeLivre);
@@ -38,6 +38,8 @@ class Adhérent {
         int getNuméroAdhérent() const;
 
         int getNombreEmpruntsRestants() const;
+
+        Bibliothèque& getBibliothèque() const;
 
 };
 

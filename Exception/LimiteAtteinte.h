@@ -1,7 +1,3 @@
-//
-// Created by tsalomon on 07/01/25.
-//
-
 #ifndef LIMITEATTEINTE_H
 #define LIMITEATTEINTE_H
 #include <iostream>
@@ -12,8 +8,8 @@ class LimiteAtteinte : public exception{
   private :
     const char* message;
   public :
-    LimiteAtteinte(const char* message) throw();
-    virtual const char* what() const throw();
+    explicit LimiteAtteinte(const char* message) noexcept;
+    const char *what() const noexcept override;
 
 };
 

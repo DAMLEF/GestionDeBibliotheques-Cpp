@@ -11,6 +11,8 @@ class Prêt {
         Prêt();
         Prêt(int propriétaireLivreCode, int codePropriétaire, int codePrêt);
 
+        void afficher() const;
+
         // Getters
         int getCodePrêt() const;
         int getPropriétaire() const;

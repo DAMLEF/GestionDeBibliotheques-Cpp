@@ -1,4 +1,5 @@
 # include "Adhérent.h"
+# include "SaisieInvalide.h"
 
 Adhérent::Adhérent(Bibliothèque &b, const string &nom, const string &prénom, const string &adresse,
                    const int numéroAdhérent, const int nombreMaxEmprunts): bibliothèqueAdhérent(b) {
@@ -18,6 +19,8 @@ void Adhérent::afficherAdhérent() const {
     std::cout << "---------------------------------------------\n";
     std::cout << "Adhérent : "<< nom << " " << prénom << std::endl << std::endl;
 
+    std::cout << "Code : "<< numéroAdhérent  << std::endl << std::endl;
+
     std::cout << "Nom           : " << nom << std::endl;
     std::cout << "Prénom        : " << prénom << std::endl;
     std::cout << "Adresse       : " << adresse << std::endl << std::endl;
@@ -28,6 +31,11 @@ void Adhérent::afficherAdhérent() const {
     std::cout << "---------------------------------------------\n";
 }
 
+void Adhérent::afficherEmprunt(){
+    emprunts.afficherListe();
+}
+
+
 
 int Adhérent::emprunterLivre(const int codeLivre) {
     if(this->nombreEmpruntsRestants > 0) {
@@ -35,13 +43,12 @@ int Adhérent::emprunterLivre(const int codeLivre) {
 
         // On vérifie que le livre reçu est bien le bon (éviter le code d'erreur).
         if (result->getCode() == codeLivre) {
-            if(result->getÉtat() == "libre") {   //todo: constante d'état ?
-                emprunts.ajouterLivre(result);      //todo tester si c'est le même que dans la bdd
+            if(result->getÉtat() == "libre") {
+                emprunts.ajouterLivre(result);
                 nombreEmprunts++;
                 nombreEmpruntsRestants--;
-                bibliothèqueAdhérent.emprunterLivre(codeLivre); //todo est-ce que la bibliothèque change ?
+                bibliothèqueAdhérent.emprunterLivre(codeLivre);
 
-                //todo: changer l'état dans le tableau adhérent
                 cout << "[GB] L'adhérent " << nom << " " << prénom <<" de la bibliothèque " << bibliothèqueAdhérent.getNom() <<
                     " a emprunté le livre au code : " << codeLivre << endl;
 
@@ -51,14 +58,15 @@ int Adhérent::emprunterLivre(const int codeLivre) {
                     " tente d'emprunter un livre qui n'est pas libre ! " << endl;
         }
         else {
-            cout << "[GB] L'adhérent " << nom << " " << prénom << " de la bibliothèque " << bibliothèqueAdhérent.getNom() <<
-                " tente d'emprunter un livre alors que le code " << codeLivre << "  est introuvable !" << endl;
+
+            throw SaisieInvalide(("[GB] L'adhérent " + nom + " " + prénom + " de la bibliothèque " + bibliothèqueAdhérent.getNom() +
+                                      " tente d'emprunter un livre qui n'est pas libre !").data());
         }
 
     }
     else {
-        cout << "[GB] L'adhérent " << nom<< " " << prénom << " de la bibliothèque " << bibliothèqueAdhérent.getNom() <<
-            " tente d'emprunter un livre alors qu'il n'a plus de crédit !" << endl;
+        throw SaisieInvalide(("[GB] L'adhérent " + nom + " " + prénom + " de la bibliothèque " + bibliothèqueAdhérent.getNom() +
+            " tente d'emprunter un livre alors que le code est introuvable !").data());
     }
 
     return -1;
@@ -111,4 +119,8 @@ int Adhérent::getNuméroAdhérent() const {
 
 int Adhérent::getNombreEmpruntsRestants() const {
     return nombreEmpruntsRestants;
+}
+
+Bibliothèque &Adhérent::getBibliothèque() const {
+    return bibliothèqueAdhérent;
 }

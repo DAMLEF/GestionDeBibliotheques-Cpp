@@ -1,5 +1,5 @@
 # include "Poésie.h"
-
+# include "SaisieInvalide.h"
 static const string CATÉGORIE = "Poésie";
 
 
@@ -10,8 +10,7 @@ Livre(isbn, code, auteur, titre, éditeur, publicCible, CATÉGORIE) {
     this->prose = prose;
 
     if(!prose && !vers) {
-        //todo: Exception
-        std:: cout << "[GB] Erreur de saisie : La poésie est nécessairement soit en prose soit en vers" << endl;
+        throw SaisieInvalide("[GB] Erreur de saisie : La poésie est nécessairement soit en prose soit en vers");
     }
 }
 
